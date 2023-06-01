@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, map, of } from 'rxjs';
+import { Observable, delay, map, of, tap } from 'rxjs';
 import { DataItems } from '../models/data-items';
 import { Items } from '../models/items';
 
@@ -17,7 +17,7 @@ export class CompaniesService {
       { id: '4', name: 'CashLab / Anna J. Kelley' },
       { id: '5', name: 'CashLab / Brenda J. Soto' },
       { id: '6', name: 'Dovish / Management / Timothy A. Merrow' },
-    ]).pipe(delay(2000), map(this.mapDataInCorrectFormat));
+    ]).pipe(delay(2000), map(this.mapDataInCorrectFormat), tap(console.log));
   }
 
   private mapDataInCorrectFormat(data: DataItems[]): Items[] {
@@ -25,32 +25,37 @@ export class CompaniesService {
 
     data.forEach((item) => {
       const itemNames = item.name.split(' / ');
-      let currentItem = null;
-      let currentArray = result;
 
-      itemNames.forEach((name, index) => {
-        const existingItem = currentArray.find((x) => x.name === name);
+      let currentItem = result.find((r) => r.name === itemNames[0]);
 
-        if (existingItem) {
-          currentItem = existingItem;
-          currentArray = currentItem.items as Items[];
-        } else {
-          const newItem = {
-            name,
+      if (!currentItem) {
+        currentItem = {
+          name: itemNames[0],
+          items: [],
+        };
+        result.push(currentItem);
+      }
+
+      let currentArray = currentItem.items as Items[];
+
+      for (let i = 1; i < itemNames.length - 1; i++) {
+        const itemName = itemNames[i];
+        let nestedItem = currentArray.find((x) => x.name === itemName);
+
+        if (!nestedItem) {
+          nestedItem = {
+            name: itemName,
             items: [],
           };
-
-          currentArray.push(newItem);
-          currentItem = newItem;
-          currentArray = newItem.items;
+          currentArray.push(nestedItem);
         }
 
-        if (index === itemNames.length - 1) {
-          currentArray.push({
-            id: item.id,
-            name: itemNames[itemNames.length - 1],
-          });
-        }
+        currentArray = nestedItem.items as Items[];
+      }
+
+      currentArray.push({
+        id: item.id,
+        name: itemNames[itemNames.length - 1],
       });
     });
 

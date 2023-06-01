@@ -3,19 +3,32 @@
 
 	<ng-container *ngFor="let department of company?.items">
 		<div class="departments">
-			<h3 class="department-name">{{department.name}}</h3>
 
-			<div class="team-members">
-				<ng-container *ngFor="let member of department.items">
-					<div class="team-member">
-						<p class="team-member-name">{{member.name}}</p>
+			<ng-container *ngIf="department?.items; else membersNoTeam;">
+				<h3 class="department-name">{{department.name}}</h3>
 
-						<span class="team-member-icon">
-							<img src="assets/svg/incoming.svg" alt="Incoming icon">
-						</span>
-					</div>
-				</ng-container>
-			</div>
+				<div class="team-members">
+					<ng-container *ngFor="let member of department.items">
+						<div class="team-member">
+							<p class="team-member-name">{{member.name}}</p>
+
+							<span class="team-member-icon">
+								<img src="assets/svg/incoming.svg" alt="Incoming icon">
+							</span>
+						</div>
+					</ng-container>
+				</div>
+			</ng-container>
+
+			<ng-template #membersNoTeam>
+				<div class="team-member">
+					<p class="team-member-name" data-id={{department.id}}>{{department.name}}</p>
+
+					<span class="team-member-icon">
+						<img src="assets/svg/incoming.svg" alt="Incoming icon">
+					</span>
+				</div>
+			</ng-template>
 		</div>
 	</ng-container>
 </div>
