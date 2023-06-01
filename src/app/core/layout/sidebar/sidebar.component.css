@@ -1,0 +1,58 @@
+aside {
+  --_indent-level-size: 1.875rem;
+
+  background-color: var(--clr-primary-100);
+  padding: 2.5rem 2.813rem;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  background-color: var(--clr-primary-100);
+  border-radius: var(--br-medium);
+  padding: 1.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 3.375rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  outline: 3px var(--clr-secondary-200) solid;
+}
+
+.sidebar-content {
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1.875rem;
+}
+
+.sidebar-title {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-regular);
+  color: var(--clr-primary-900);
+}
+
+/* ---------------------------------------- */
+
+.companies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--_indent-level-size);
+}
+
+

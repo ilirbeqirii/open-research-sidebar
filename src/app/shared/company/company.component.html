@@ -1,0 +1,21 @@
+<div class="company">
+	<h4 class="company-name">{{company?.name}}</h4>
+
+	<ng-container *ngFor="let department of company?.items">
+		<div class="departments">
+			<h3 class="department-name">{{department.name}}</h3>
+
+			<div class="team-members">
+				<ng-container *ngFor="let member of department.items">
+					<div class="team-member">
+						<p class="team-member-name">{{member.name}}</p>
+
+						<span class="team-member-icon">
+							<img src="assets/svg/incoming.svg" alt="Incoming icon">
+						</span>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+	</ng-container>
+</div>

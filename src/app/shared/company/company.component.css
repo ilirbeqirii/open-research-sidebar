@@ -1,0 +1,51 @@
+.company {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.company-name {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-regular);
+  color: var(--clr-primary-900);
+}
+
+.departments,
+.team-members {
+  padding-inline-start: var(--_indent-level-size);
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.department-name {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-regular);
+  color: var(--clr-primary-900);
+  margin-block-end: 1.875rem;
+}
+
+.team-member {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-member-name {
+  font-size: var(--fs-regular);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-secondary-600);
+}
+
+.team-member-icon {
+  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
